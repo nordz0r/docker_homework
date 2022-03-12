@@ -7,7 +7,7 @@
 ```
 git clone https://github.com/nordz0r/docker_homework/
 cd docker_homework/frontend
-docker build -t docker_task1:v0.1 -t docker_task1:latest .
+docker build -t docker_task1:v0.1 -t docker_task1:latest . --network host
 docker run -d -p 80:3000 --name docker_task1 docker_task1:latest
 ```
 
