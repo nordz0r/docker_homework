@@ -11,6 +11,9 @@ docker build -t docker_task1:v0.1 -t docker_task1:latest --network host .
 docker run -d -p 80:3000 --name docker_task1 docker_task1:latest
 ```
 
+### Tested
+Tested on Debian 11 WSL2 (Windows 10)
+
 ## Other information 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
