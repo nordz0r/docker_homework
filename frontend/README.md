@@ -13,8 +13,9 @@ docker run -d -p 80:3000 --name docker_task1 docker_task1:latest
 
 ### Tested
 Tested on Debian 11 WSL2 (Windows 10)
+![Task1.Docker](screenshot_20220312.png)
 
-## Other information 
+## Other information
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
