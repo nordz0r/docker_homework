@@ -1,3 +1,18 @@
+## Task 1. Docker
+
+### Description
+Написать Dockerfile для frontend располагается в директории /frontend, собрать и запустить.
+
+### Building from a Dockerfile and launching
+```
+git clone https://github.com/nordz0r/docker_homework/
+cd docker_homework/frontend
+docker build -t docker_task1:v0.1 -t docker_task1:latest .
+docker run -d -p 80:3000 --name docker_task1 docker_task1:latest
+```
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
