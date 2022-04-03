@@ -17,7 +17,6 @@ docker network create --subnet 192.168.100.0/24 --gateway=192.168.100.1 --ip-ran
 ### Run Database
 ```
 docker run -d --name postgres_db --network backend_network --ip 192.168.100.20 -e POSTGRES_USER=django -e POSTGRES_PASSWORD=django -e POSTGRES_NAME=django postgres:13
-
 ```
 
 ### Building from a Dockerfile and launching
