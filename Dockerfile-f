@@ -1,0 +1,11 @@
+FROM node:14-alpine AS build
+COPY ./frontend /frontend
+WORKDIR /frontend
+RUN npm install -i && npx browserslist@latest --update-db && npm run build
+
+
+FROM node:14-alpine
+COPY --from=build /frontend/build /build
+RUN npm install -g serve
+EXPOSE 3000
+ENTRYPOINT ["serve", "-s", "build"]

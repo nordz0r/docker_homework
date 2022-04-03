@@ -1,0 +1,65 @@
+version: '3'
+
+services:
+    frontend:
+        build:
+            context: .
+            dockerfile: Dockerfile-f
+        tty: true
+        container_name: frontend
+        healthcheck:
+            test: curl -sS http://localhost:3000 || echo 1
+            interval: 2m
+            timeout: 30s
+            retries: 3
+            start_period: 30s
+        restart: unless-stopped
+        ports:
+            - 80:3000
+        depends_on:
+          - database
+        networks:
+            - frontend_network
+            - backend_network
+
+    backend:
+        build:
+            context: .
+            dockerfile: Dockerfile-b
+        container_name: backend
+        healthcheck:
+            test: curl -sS http://localhost:8000 || echo 1
+            interval: 2m
+            timeout: 30s
+            retries: 3
+            start_period: 30s
+        restart: unless-stopped
+        ports:
+            - 8000:8000
+        depends_on:
+            - database
+        networks:
+            - backend_network
+
+    database:
+        image: postgres
+        container_name: postgres_db
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready -U habrpguser -d habrdb"]
+            interval: 10s
+            timeout: 5s
+            retries: 5
+            start_period: 10s
+        restart: unless-stopped
+        environment:
+            - POSTGRES_DB=django
+            - POSTGRES_USER=django
+            - POSTGRES_PASSWORD=django
+        volumes:
+            - ./pgdata:/var/lib/postgresql/data
+        networks:
+            - backend_network
+
+networks:
+    frontend_network:
+    backend_network:

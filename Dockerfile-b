@@ -1,0 +1,9 @@
+FROM python:3.8
+RUN useradd -ms /bin/bash nord
+USER nord
+COPY --chown=nord:nord ./lib_catalog /lib_catalog
+WORKDIR /lib_catalog
+RUN pip install --upgrade pip && pip install -r requirements.txt
+EXPOSE 8000
+ENTRYPOINT ["./docker-entrypoint.sh"]
+
